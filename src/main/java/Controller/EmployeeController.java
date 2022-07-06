@@ -25,7 +25,7 @@ public class EmployeeController {
         return result;
     }
 
-    public void addEmployee(String name, String lastName, DepartmentEntity departmentEntity,String password) {
+    public void addEmployee(String name, String lastName, int departmentId,String password) {
         EntityManagerFactory entityManagerFactory = getEntityManagerFactory(password);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
@@ -35,7 +35,8 @@ public class EmployeeController {
             employeeEntity = new EmployeeEntity();
             employeeEntity.setFirstName(name);
             employeeEntity.setLastName(lastName);
-            employeeEntity.setDept(departmentEntity);
+            Query query = entityManager.createNativeQuery("SELECT id FROM department where id='1' ", DepartmentEntity.class);
+            employeeEntity.setDept(query);
             entityManager.persist(employeeEntity);
             System.out.println("Employee with specified values have been added. The id of employee is: " + employeeEntity.getId());
             transaction.commit();
