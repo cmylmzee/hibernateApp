@@ -7,7 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ControlMenu {
+public class EmployeeController {
+
     static EmployeeEntity employeeEntity;
 
     private EntityManagerFactory getEntityManagerFactory(String password) {

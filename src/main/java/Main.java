@@ -15,47 +15,48 @@ public class Main {
     static int a = 1;
     static ControlMenu controlMenu = new ControlMenu();
     static EmployeeEntity employeeEntity = new EmployeeEntity();
+
     public static void main(String[] args) {
 
 
         Scanner in = new Scanner(System.in);
         System.out.print("Please type in a password to connect to the database: ");
         String password = "";
-        try{
+        try {
             password = in.next();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Invalid password typee");
         }
 
-        while (a!=0){
+        while (a != 0) {
             System.out.println("MENU\n" +
                     "1-ADD EMPLOYEE\n" +
                     "2-SHOW THE EMPLOYEE LIST\n" +
                     "3-EXIT\n");
-            switch (choices.nextInt()){
-                case 1:{
+            switch (choices.nextInt()) {
+                case 1: {
                     System.out.println("Please enter the Name\n");
                     String firstName = name.nextLine();
-                    while(isDigigt(firstName) ){
+                    while (isDigigt(firstName)) {
                         System.out.print("Name or surname should not be numbered!\n" +
                                 "Try again!!\n");
                         firstName = name.nextLine();
                     }
                     String lastName = name.nextLine();
-                    while(isDigigt(lastName) ){
+                    while (isDigigt(lastName)) {
                         System.out.print("Name or surname should not be numbered!\n" +
                                 "Try again!!\n");
                         lastName = name.nextLine();
                     }
-                    controlMenu.addEmployee(firstName,lastName,password);
+                    controlMenu.addEmployee(firstName, lastName, password);
                     break;
                 }
-                case 2:{
+                case 2: {
                     controlMenu.showTheEmployee(password);
                     break;
                 }
-                case 3:{
-                    a=0;
+                case 3: {
+                    a = 0;
                     System.out.println("EXITING...");
                     break;
                 }
@@ -63,10 +64,9 @@ public class Main {
         }
 
 
-
     }
 
-    public static boolean isDigigt(CharSequence passCode){
+    public static boolean isDigigt(CharSequence passCode) {
         boolean hasDigit = false;
         for (int i = 0; i < passCode.length(); ++i) {
             if (Character.isDigit(passCode.charAt(i))) {
@@ -77,7 +77,7 @@ public class Main {
         return hasDigit;
     }
 
-    public static String hashIt(String toHash){
+    public static String hashIt(String toHash) {
         return toHash;
     }
 

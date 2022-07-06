@@ -3,14 +3,11 @@ package entity;
 import javax.persistence.*;
 
 
-
 @Entity
 @Table(name = "employee", schema = "employee", catalog = "")
 public class EmployeeEntity {
 
-
-
-
+    //<editor-fold desc="fields">
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -21,9 +18,19 @@ public class EmployeeEntity {
     @Basic
     @Column(name = "lastName")
     private String lastName;
-    @ManyToOne(cascade={CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "departmentId", referencedColumnName = "id")
     private DepartmentEntity dept;
+    //</editor-fold>
+
+    //<editor-fold desc="getter setter">
+    public DepartmentEntity getDept() {
+        return dept;
+    }
+
+    public void setDept(DepartmentEntity departmentByDepartmentId) {
+        this.dept = departmentByDepartmentId;
+    }
 
     public long getId() {
         return id;
@@ -48,6 +55,8 @@ public class EmployeeEntity {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    //</editor-fold>
 
     @Override
     public boolean equals(Object o) {
@@ -80,16 +89,6 @@ public class EmployeeEntity {
                 ", dept=" + dept +
                 '}';
     }
-
-    public DepartmentEntity getDept() {
-        return dept;
-    }
-
-    public void setDept(DepartmentEntity departmentByDepartmentId) {
-        this.dept = departmentByDepartmentId;
-    }
-
-
 
 
 }
