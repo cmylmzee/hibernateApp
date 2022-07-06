@@ -24,7 +24,7 @@ public class Main {
         try{
             password = in.next();
         }catch (Exception e){
-            System.out.println("Invalid password type");
+            System.out.println("Invalid password typee");
         }
 
         while (a!=0){
