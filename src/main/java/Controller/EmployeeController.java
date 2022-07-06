@@ -1,5 +1,6 @@
 package Controller;
 
+import entity.DepartmentEntity;
 import entity.EmployeeEntity;
 
 import javax.persistence.*;
@@ -24,7 +25,7 @@ public class EmployeeController {
         return result;
     }
 
-    public void addEmployee(String name, String lastName, String password) {
+    public void addEmployee(String name, String lastName, DepartmentEntity departmentEntity,String password) {
         EntityManagerFactory entityManagerFactory = getEntityManagerFactory(password);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
@@ -34,6 +35,7 @@ public class EmployeeController {
             employeeEntity = new EmployeeEntity();
             employeeEntity.setFirstName(name);
             employeeEntity.setLastName(lastName);
+            employeeEntity.setDept(departmentEntity);
             entityManager.persist(employeeEntity);
             System.out.println("Employee with specified values have been added. The id of employee is: " + employeeEntity.getId());
             transaction.commit();
