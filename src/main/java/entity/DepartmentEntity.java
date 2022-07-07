@@ -5,6 +5,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "department", schema = "employee", catalog = "")
 public class DepartmentEntity {
+
+    //<editor-fold desc="fields" desc="fields">
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -13,6 +15,10 @@ public class DepartmentEntity {
     @Column(name = "name")
     private String name;
 
+    //</editor-fold>
+
+
+    //<editor-fold desc="getter-setter">
     public long getId() {
         return id;
     }
@@ -28,6 +34,7 @@ public class DepartmentEntity {
     public void setName(String name) {
         this.name = name;
     }
+    //</editor-fold>
 
     @Override
     public boolean equals(Object o) {
@@ -47,5 +54,13 @@ public class DepartmentEntity {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

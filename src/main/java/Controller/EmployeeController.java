@@ -35,8 +35,10 @@ public class EmployeeController {
             employeeEntity = new EmployeeEntity();
             employeeEntity.setFirstName(name);
             employeeEntity.setLastName(lastName);
-            Query query = entityManager.createNativeQuery("SELECT id FROM department where id='1' ", DepartmentEntity.class);
-            employeeEntity.setDept(query);
+            Query query = entityManager.createNativeQuery("SELECT * FROM department  where id ="+ departmentId, DepartmentEntity.class);
+
+            System.out.println(query.getResultList());
+            employeeEntity.setDept((DepartmentEntity) query.getSingleResult());
             entityManager.persist(employeeEntity);
             System.out.println("Employee with specified values have been added. The id of employee is: " + employeeEntity.getId());
             transaction.commit();

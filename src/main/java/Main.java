@@ -1,10 +1,6 @@
-import Controller.ControlMenu;
+import Controller.EmployeeController;
 import entity.EmployeeEntity;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import java.util.Scanner;
 
 
@@ -13,7 +9,7 @@ public class Main {
     static Scanner name = new Scanner(System.in);
     static Scanner choices = new Scanner(System.in);
     static int a = 1;
-    static ControlMenu controlMenu = new ControlMenu();
+    static EmployeeController employeeController = new EmployeeController();
     static EmployeeEntity employeeEntity = new EmployeeEntity();
 
     public static void main(String[] args) {
@@ -38,21 +34,29 @@ public class Main {
                     System.out.println("Please enter the Name\n");
                     String firstName = name.nextLine();
                     while (isDigigt(firstName)) {
-                        System.out.print("Name or surname should not be numbered!\n" +
+                        System.out.print("Name should not be numbered!\n" +
                                 "Try again!!\n");
                         firstName = name.nextLine();
                     }
+                    System.out.println("Please enter the lastname\n");
                     String lastName = name.nextLine();
                     while (isDigigt(lastName)) {
-                        System.out.print("Name or surname should not be numbered!\n" +
+                        System.out.print("Name should not be numbered!\n" +
                                 "Try again!!\n");
                         lastName = name.nextLine();
                     }
-                    controlMenu.addEmployee(firstName, lastName, password);
+                    System.out.println("Please enter the department id\n");
+                    int departmentId = name.nextInt();
+                    while (departmentId > 2 || departmentId < 1) {
+                        System.out.print("Departmen ıd isn't valid\n" +
+                                "Try again!!\n");
+                        departmentId = name.nextInt();
+                    }
+                    employeeController.addEmployee(firstName, lastName,departmentId, password);
                     break;
                 }
                 case 2: {
-                    controlMenu.showTheEmployee(password);
+                    employeeController.showTheEmployee(password);
                     break;
                 }
                 case 3: {
